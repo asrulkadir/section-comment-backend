@@ -32,11 +32,11 @@ func InitViper() (Configurations, error) {
 		return config, err
 	}
 
-	username := viper.GetString("database.username")
-	password := viper.GetString("database.password")
-	host := viper.GetString("database.host")
-	port := viper.GetInt("database.port")
-	dbname := viper.GetString("database.dbname")
+	username := viper.GetString("username")
+	password := viper.GetString("password")
+	host := viper.GetString("host")
+	port := viper.GetInt("port")
+	dbname := viper.GetString("dbname")
 
 	config.Database.DBName = dbname
 	config.Database.DBUser = username
