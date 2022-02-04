@@ -22,9 +22,9 @@ type DatabaseConfigurations struct {
 
 func InitViper() (Configurations, error) {
 	var config Configurations
-	viper.SetConfigName("config")
+	viper.SetConfigName("app")
 	viper.AddConfigPath(".")
-	viper.SetConfigType("yaml")
+	viper.SetConfigType("env")
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err != nil {
