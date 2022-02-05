@@ -93,11 +93,11 @@ func (s *ServiceComment) GetComments(ctx context.Context) (data []CtrComment, er
 				// users = append(users, reply.Username)
 			}
 
-			for _, reply2 := range dataComment.Replies {
-				if reply2.Username == reply.ReplyingTo {
-					dataComment.Replies = append(dataComment.Replies, dataReply)
-				}
-			}
+			// for _, reply2 := range dataComment.Replies {
+			// 	if reply2.Username == reply.ReplyingTo {
+			// 		dataComment.Replies = append(dataComment.Replies, dataReply)
+			// 	}
+			// }
 
 		}
 
