@@ -5,6 +5,7 @@ import (
 	// "fmt"
 	// "log"
 	"net/http"
+	"os"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -59,6 +60,7 @@ func main() {
 
 	// //controller
 	// comments.NewController(e, commentService, validator)
+	port := os.Getenv("PORT")
 
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(port))
 }
