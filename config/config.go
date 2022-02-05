@@ -22,10 +22,11 @@ type DatabaseConfigurations struct {
 
 func InitViper() (Configurations, error) {
 	var config Configurations
-	// viper.SetConfigName("app")
+	// viper.SetConfigName("config")
 	// viper.AddConfigPath(".")
-	// viper.SetConfigType("env")
-	viper.SetConfigFile("app.env")
+	// viper.SetConfigType("yaml")
+
+	viper.SetConfigFile(".env")
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err != nil {
@@ -33,14 +34,20 @@ func InitViper() (Configurations, error) {
 		return config, err
 	}
 
-	username := viper.GetString("DB_USER")
+	// user := viper.GetString("database.user")
+	// password := viper.GetString("database.password")
+	// host := viper.GetString("database.host")
+	// port := viper.GetInt("database.port")
+	// dbname := viper.GetString("database.dbname")
+
+	user := viper.GetString("DB_USER")
 	password := viper.GetString("DB_PASSWORD")
 	host := viper.GetString("DB_HOST")
 	port := viper.GetInt("DB_PORT")
 	dbname := viper.GetString("DB_NAME")
 
 	config.Database.DBName = dbname
-	config.Database.DBUser = username
+	config.Database.DBUser = user
 	config.Database.DBPassword = password
 	config.Database.DBHost = host
 	config.Database.DBPort = fmt.Sprintf("%d", port)

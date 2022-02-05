@@ -60,7 +60,7 @@ func main() {
 
 	//controller
 	comments.NewController(e, commentService, validator)
-	port := os.Getenv("PORT")
 
+	port := os.Getenv("PORT")
 	e.Logger.Fatal(e.Start(":" + port))
 }
