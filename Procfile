@@ -1,1 +1,1 @@
-web: bin/section-comment-backend
+web: section-comment-backend
