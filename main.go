@@ -62,5 +62,5 @@ func main() {
 	// comments.NewController(e, commentService, validator)
 	port := os.Getenv("PORT")
 
-	e.Logger.Fatal(e.Start(port))
+	e.Logger.Fatal(e.Start(":" + port))
 }
