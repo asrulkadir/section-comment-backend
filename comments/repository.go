@@ -72,7 +72,7 @@ func (c *commentRepository) GetComments(ctx context.Context) (data []Comment, er
 			FROM tbl_comments tc
 			JOIN tbl_user tu 
 			ON tc.username = tu.username
-			ORDER BY created_at ASC`
+			ORDER BY id`
 	rows, err := c.db.QueryContext(ctx, query)
 	if err != nil {
 		log.Println(err)
@@ -103,7 +103,7 @@ func (c *commentRepository) GetComments(ctx context.Context) (data []Comment, er
 func (c *commentRepository) GetReplies(ctx context.Context) (data []Reply, err error) {
 	query := `SELECT tr.id, tr.content, tr.created_at, tr.score, tr.replying_to, tr.username, tr.id_comment  
 		FROM tbl_replies tr 
-		ORDER BY created_at ASC`
+		ORDER BY id`
 	rows, err := c.db.QueryContext(ctx, query)
 	if err != nil {
 		log.Println(err)
