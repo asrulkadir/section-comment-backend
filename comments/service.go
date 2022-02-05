@@ -77,6 +77,7 @@ func (s *ServiceComment) GetComments(ctx context.Context) (data []CtrComment, er
 			dataReply.Score = reply.Score
 			dataReply.ReplyingTo = reply.ReplyingTo
 			dataReply.Username = reply.Username
+			dataReply.IdComment = reply.IdComment
 
 			for _, user := range users {
 				if user.Username == reply.Username {
@@ -88,10 +89,14 @@ func (s *ServiceComment) GetComments(ctx context.Context) (data []CtrComment, er
 				dataReply.Image = currentUser.Image
 			}
 
-			if comment.Username == reply.ReplyingTo {
+			if comment.ID == reply.IdComment {
 				dataComment.Replies = append(dataComment.Replies, dataReply)
-				// users = append(users, reply.Username)
 			}
+
+			// if comment.Username == reply.ReplyingTo {
+			// 	dataComment.Replies = append(dataComment.Replies, dataReply)
+			// 	// users = append(users, reply.Username)
+			// }
 
 			// for _, reply2 := range dataComment.Replies {
 			// 	if reply2.Username == reply.ReplyingTo {

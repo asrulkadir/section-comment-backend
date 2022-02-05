@@ -33,75 +33,6 @@ func NewRepositoryComments(db *sql.DB) *commentRepository {
 	return &commentRepository{db}
 }
 
-// func (c *commentRepository) GetData(ctx context.Context) (data CtrData, err error) {
-// 	var currentUser CurrentUser
-// 	err = c.db.QueryRowContext(ctx, "SELECT id, image, username FROM tbl_current_user WHERE id = 1").Scan(
-// 		&currentUser.ID,
-// 		&currentUser.Image,
-// 		&currentUser.Username,
-// 	)
-// 	if err != nil {
-// 		log.Println(err)
-// 		return data, err
-// 	}
-// 	data.CurrentUser = CtrCurrentUser(currentUser)
-
-// 	var comments []Comment
-// 	queryComment := `SELECT id, content, created_at, score, username FROM tbl_comments`
-// 	rows, err := c.db.QueryContext(ctx, queryComment)
-// 	if err != nil {
-// 		log.Println(err)
-// 		return data, err
-// 	}
-
-// 	defer rows.Close()
-
-// 	for rows.Next() {
-// 		var comment Comment
-// 		err := rows.Scan(&comment.ID, &comment.Content, &comment.CreatedAt, &comment.Score, &comment.Username)
-// 		if err != nil {
-// 			log.Println(err)
-// 			return data, err
-// 		}
-// 		comments = append(comments, comment)
-// 	}
-// 	data.Comments = comments
-
-// 	return data, nil
-
-// }
-
-// func (c *commentRepository) GetUsers(ctx context.Context) (data []CurrentUser, err error) {
-// 	rows, err := c.db.QueryContext(ctx, "SELECT id, image, username FROM tbl_user")
-// 	if err != nil {
-// 		log.Println(err)
-// 		return data, err
-// 	}
-
-// 	for rows.Next() {
-// 		var user CurrentUser
-// 		err = rows.Scan(&user.ID, &user.Image, &user.Username)
-// 		if err != nil {
-// 			log.Println(err)
-// 			return data, err
-// 		}
-
-// 		data = append(data, user)
-// 	}
-
-// 	return data, nil
-// }
-
-// func (c *commentRepository) GetUsersByID(ctx context.Context, id uint64) (data CurrentUser, err error) {
-// 	err = c.db.QueryRowContext(ctx, "SELECT id, image, username FROM tbl_user WHERE id = ?", id).Scan(&data.ID, &data.Image, &data.Username)
-// 	if err != nil {
-// 		log.Println(err)
-// 		return data, err
-// 	}
-
-// 	return data, nil
-// }
-
 func (c *commentRepository) GetCurrentUser(ctx context.Context) (data CtrCurrentUser, err error) {
 	err = c.db.QueryRowContext(ctx, "SELECT id, image, username FROM tbl_current_user WHERE id = 1").Scan(&data.ID, &data.Image, &data.Username)
 	if err != nil {
@@ -170,7 +101,7 @@ func (c *commentRepository) GetComments(ctx context.Context) (data []Comment, er
 }
 
 func (c *commentRepository) GetReplies(ctx context.Context) (data []Reply, err error) {
-	query := `SELECT tr.id, tr.content, tr.created_at, tr.score, tr.replying_to, tr.username  
+	query := `SELECT tr.id, tr.content, tr.created_at, tr.score, tr.replying_to, tr.username, tr.id_comment  
 		FROM tbl_replies tr 
 		ORDER BY created_at ASC`
 	rows, err := c.db.QueryContext(ctx, query)
@@ -187,6 +118,7 @@ func (c *commentRepository) GetReplies(ctx context.Context) (data []Reply, err e
 			&reply.Score,
 			&reply.ReplyingTo,
 			&reply.Username,
+			&reply.IdComment,
 		)
 		if err != nil {
 			log.Println(err)

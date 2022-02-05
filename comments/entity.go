@@ -16,6 +16,7 @@ type Reply struct {
 	ReplyingTo string
 	Score      int
 	Image      string
+	IdComment  int
 }
 
 type Comment struct {
@@ -46,6 +47,7 @@ type CtrReply struct {
 	Score      int       `json:"score"`
 	Username   string    `json:"username"`
 	Image      string    `json:"image"`
+	IdComment  int       `json:"id_comment"`
 }
 
 type CtrComment struct {
@@ -74,6 +76,7 @@ type CtrPostReply struct {
 	Score      int    `json:"score"`
 	ReplyingTo string `json:"replying_to" validate:"required"`
 	Username   string `json:"username" validate:"required"`
+	IdComment  int    `json:"id_comment" validate:"required"`
 }
 
 type CtrEditComment struct {

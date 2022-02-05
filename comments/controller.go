@@ -159,6 +159,7 @@ func (c *commentController) PostReply(e echo.Context) error {
 		Score:      u.Score,
 		Username:   u.Username,
 		ReplyingTo: u.ReplyingTo,
+		IdComment:  u.IdComment,
 	}
 
 	err := c.service.PostReply(e.Request().Context(), data)
