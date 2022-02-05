@@ -12,22 +12,30 @@ import (
 	_ "github.com/lib/pq"
 
 	"github.com/asrulkadir/section-comment-backend/comments"
-	"github.com/asrulkadir/section-comment-backend/config"
+	// "github.com/asrulkadir/section-comment-backend/config"
 	"github.com/asrulkadir/section-comment-backend/pkg/validator"
 )
 
 func main() {
-	configViper, err := config.InitViper()
-	if err != nil {
-		log.Fatal(err)
-	}
+	// configViper, err := config.InitViper()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
+	// dsn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=require",
+	// 	configViper.Database.DBUser,
+	// 	configViper.Database.DBPassword,
+	// 	configViper.Database.DBHost,
+	// 	configViper.Database.DBPort,
+	// 	configViper.Database.DBName,
+	// )
 
 	dsn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=require",
-		configViper.Database.DBUser,
-		configViper.Database.DBPassword,
-		configViper.Database.DBHost,
-		configViper.Database.DBPort,
-		configViper.Database.DBName,
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_HOST"),
+		os.Getenv("DB_PORT"),
+		os.Getenv("DB_NAME"),
 	)
 
 	conn, err := sql.Open("postgres", dsn)
