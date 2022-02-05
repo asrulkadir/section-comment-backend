@@ -88,5 +88,5 @@ type CtrEditReply struct {
 }
 
 type CtrEditScore struct {
-	Score int `json:"score" validate:"required"`
+	Score int `json:"score"`
 }
