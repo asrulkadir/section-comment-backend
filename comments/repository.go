@@ -131,8 +131,8 @@ func (c *commentRepository) GetReplies(ctx context.Context) (data []Reply, err e
 }
 
 func (c *commentRepository) PostReply(ctx context.Context, data CtrPostReply) error {
-	query := `INSERT INTO tbl_replies (content, score, replying_to, username) VALUES ($1, $2, $3, $4)`
-	_, err := c.db.ExecContext(ctx, query, data.Content, data.Score, data.ReplyingTo, data.Username)
+	query := `INSERT INTO tbl_replies (content, score, replying_to, username, id_comment) VALUES ($1, $2, $3, $4, $5)`
+	_, err := c.db.ExecContext(ctx, query, data.Content, data.Score, data.ReplyingTo, data.Username, data.IdComment)
 	if err != nil {
 		log.Println(err)
 		return err
