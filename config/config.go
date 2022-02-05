@@ -22,11 +22,11 @@ type DatabaseConfigurations struct {
 
 func InitViper() (Configurations, error) {
 	var config Configurations
-	// viper.SetConfigName("config")
-	// viper.AddConfigPath(".")
-	// viper.SetConfigType("yaml")
+	viper.SetConfigName("config")
+	viper.AddConfigPath(".")
+	viper.SetConfigType("yaml")
 
-	viper.SetConfigFile(".env")
+	// viper.SetConfigFile(".env")
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err != nil {
@@ -34,17 +34,17 @@ func InitViper() (Configurations, error) {
 		return config, err
 	}
 
-	// user := viper.GetString("database.user")
-	// password := viper.GetString("database.password")
-	// host := viper.GetString("database.host")
-	// port := viper.GetInt("database.port")
-	// dbname := viper.GetString("database.dbname")
+	user := viper.GetString("database.user")
+	password := viper.GetString("database.password")
+	host := viper.GetString("database.host")
+	port := viper.GetInt("database.port")
+	dbname := viper.GetString("database.dbname")
 
-	user := viper.GetString("DB_USER")
-	password := viper.GetString("DB_PASSWORD")
-	host := viper.GetString("DB_HOST")
-	port := viper.GetInt("DB_PORT")
-	dbname := viper.GetString("DB_NAME")
+	// user := viper.GetString("DB_USER")
+	// password := viper.GetString("DB_PASSWORD")
+	// host := viper.GetString("DB_HOST")
+	// port := viper.GetInt("DB_PORT")
+	// dbname := viper.GetString("DB_NAME")
 
 	config.Database.DBName = dbname
 	config.Database.DBUser = user

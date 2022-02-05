@@ -22,7 +22,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	dsn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
+	dsn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=require",
 		configViper.Database.DBUser,
 		configViper.Database.DBPassword,
 		configViper.Database.DBHost,
