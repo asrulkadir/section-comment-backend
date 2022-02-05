@@ -22,7 +22,10 @@ type DatabaseConfigurations struct {
 
 func InitViper() (Configurations, error) {
 	var config Configurations
-	viper.SetConfigFile(".env")
+	// viper.SetConfigName("app")
+	// viper.AddConfigPath(".")
+	// viper.SetConfigType("env")
+	viper.SetConfigFile("app.env")
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err != nil {

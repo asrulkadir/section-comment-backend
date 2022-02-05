@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"section_comment_backend/pkg/validator"
+	"github.com/asrulkadir/section-comment-backend/pkg/validator"
 
 	"github.com/labstack/echo/v4"
 )

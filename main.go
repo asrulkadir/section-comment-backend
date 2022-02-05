@@ -10,9 +10,9 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/lib/pq"
 
-	"section_comment_backend/comments"
-	"section_comment_backend/config"
-	"section_comment_backend/pkg/validator"
+	"github.com/asrulkadir/section-comment-backend/comments"
+	"github.com/asrulkadir/section-comment-backend/config"
+	"github.com/asrulkadir/section-comment-backend/pkg/validator"
 )
 
 func main() {
