@@ -53,7 +53,7 @@ func main() {
 	validator := validator.New()
 	e.Validator = validator
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"https://section-comment.vercel.app/"},
+		AllowOrigins: []string{"https://section-comment.vercel.app"},
 		AllowMethods: []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete},
 	}))
 	e.GET("/", func(c echo.Context) error {
